@@ -217,26 +217,28 @@ function openDay1(){document.getElementById("day1").classList.remove("hidden");w
 
   <!-- Romantic Music -->
   <!-- Replace the src below with your own audio file URL -->
-  <audio id="bgMusic" loop>
-   <source src="https://drive.google.com/uc?export=download&id=1Tfqw0uBjzpoVknqEvEQjVD7MfRzxxYQu" type="audio/mpeg">
+  <audio id="bgMusic" loop preload="auto" playsinline>
+    <source src="https://drive.google.com/uc?export=download&id=1Tfqw0uBjzpoVknqEvEQjVD7MfRzxxYQu" type="audio/mpeg">
   </audio>
 
   <script>
   const music = document.getElementById('bgMusic');
 
-  // Attempt autoplay (works on some browsers)
+  // Try autoplay muted first (works on most mobile browsers)
   window.addEventListener('load', () => {
-    music.play().catch(() => {
-      // Autoplay blocked — wait for user interaction
+    music.muted = true;
+    music.play().then(() => {
+      // Unmute after first interaction
+      document.body.addEventListener('click', () => {
+        music.muted = false;
+      }, { once: true });
+    }).catch(() => {
+      // If blocked, play on first tap
+      document.body.addEventListener('click', () => {
+        music.play();
+      }, { once: true });
     });
   });
-
-  // Play on first user interaction (mobile-friendly)
-  document.body.addEventListener('click', () => {
-    if (music.paused) {
-      music.play();
-    }
-  }, { once: true });
   </script>
 
 </body>
