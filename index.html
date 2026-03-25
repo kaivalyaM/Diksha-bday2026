@@ -3,243 +3,543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diksha’s Birthday Countdown ❤️</title>
+<title>Diksha's Birthday Week 🎂</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
-  color:#fff;
-  overflow-x:hidden;
-}
+  :root {
+    --rose:    #e8556d;
+    --blush:   #f7a4b0;
+    --cream:   #fff5f0;
+    --deep:    #2a0a12;
+    --card-bg: rgba(255,255,255,0.10);
+    --card-border: rgba(255,255,255,0.22);
+  }
 
-/* Floating hearts */
-.heart-bg{
-  position:fixed;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  z-index:-1;
-}
-.heart-bg span{
-  position:absolute;
-  bottom:-50px;
-  font-size:20px;
-  animation:float 8s linear infinite;
-}
-@keyframes float{
-  0%{transform:translateY(0) scale(1);opacity:1}
-  100%{transform:translateY(-100vh) scale(1.5);opacity:0}
-}
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-.container{
-  max-width:500px;
-  margin:auto;
-  padding:20px;
-}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #1a040b;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
 
-.hero{
-  text-align:center;
-  margin-top:20px;
-}
-.hero h1{
-  font-size:2rem;
-}
-.hero p{
-  opacity:0.9;
-  font-size:0.95rem;
-}
+  /* ── GRADIENT MESH BACKGROUND ── */
+  .bg-mesh {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, #7b1230 0%, transparent 60%),
+      radial-gradient(ellipse 70% 50% at 80% 80%, #c93458 0%, transparent 55%),
+      radial-gradient(ellipse 60% 80% at 50% 50%, #3d0818 0%, transparent 70%),
+      #0f0208;
+  }
 
-.countdown{
-  margin:20px 0;
-  font-size:1.3rem;
-  font-weight:600;
-}
+  /* ── FLOATING PETALS ── */
+  .petals { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+  .petal {
+    position:absolute; bottom:-60px;
+    font-size: 18px;
+    animation: floatUp linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity:.8; }
+    50%  { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1.3); opacity:0; }
+  }
 
-.card{
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(12px);
-  padding:18px;
-  border-radius:20px;
-  margin:15px 0;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  animation:fadeUp 0.8s ease;
-}
+  /* ── CONTAINER ── */
+  .container {
+    position: relative; z-index: 2;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 14px;
+    opacity: 0.85;
+    animation: fadeDown 1s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 30%, var(--blush));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+  .hero-sub {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 10px;
+    font-style: italic;
+    animation: fadeDown 1s 0.4s ease both;
+  }
 
-.nickname span{
-  display:block;
-  margin:5px 0;
-}
+  /* ── COUNTDOWN ── */
+  .countdown-wrap {
+    display: flex; justify-content: center; gap: 12px;
+    margin: 24px 0;
+    animation: fadeDown 1s 0.6s ease both;
+  }
+  .countdown-unit {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(16px);
+    border-radius: 14px;
+    padding: 12px 16px;
+    text-align: center;
+    min-width: 64px;
+  }
+  .countdown-unit .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--blush);
+  }
+  .countdown-unit .label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 4px;
+  }
 
-.days{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.day{
-  padding:12px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.2);
-  font-size:0.85rem;
-  cursor:pointer;
-  transition:0.3s;
-}
-.day:hover{transform:scale(1.05)}
+  /* ── CARDS ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(18px);
+    border-radius: 22px;
+    padding: 22px 24px;
+    margin: 16px 0;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    animation: fadeUp 0.9s ease both;
+  }
+  .card-accent {
+    border-color: rgba(232,85,109,0.4);
+    background: rgba(232,85,109,0.08);
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(28px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity:0; transform:translateY(-18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
 
-button{
-  margin-top:10px;
-  padding:10px 16px;
-  border:none;
-  border-radius:20px;
-  background:#ff6b81;
-  color:white;
-  font-size:0.9rem;
-  cursor:pointer;
-}
+  /* ── NICKNAMES ── */
+  .nicknames {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center;
+    padding: 6px 0;
+  }
+  .nick {
+    background: rgba(232,85,109,0.18);
+    border: 1px solid rgba(232,85,109,0.35);
+    border-radius: 50px;
+    padding: 7px 18px;
+    font-size: 0.88rem;
+    color: #ffd4da;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
 
-.hidden{display:none}
+  /* ── QUOTE CARD ── */
+  .quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.92);
+    text-align: center;
+  }
+  .quote-attr {
+    font-size: 0.75rem;
+    text-align: right;
+    color: var(--blush);
+    margin-top: 10px;
+    letter-spacing: 0.1em;
+  }
 
-.footer{
-  text-align:center;
-  font-size:0.8rem;
-  opacity:0.8;
-  margin-top:20px;
-}
+  /* ── TRAIT LIST ── */
+  .trait {
+    display: flex; align-items: flex-start;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .trait:last-child { border-bottom: none; }
+  .trait-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .trait-text { font-size: 0.9rem; line-height: 1.5; color: rgba(255,255,255,0.88); }
+  .trait-text b { color: var(--blush); font-weight: 500; }
 
-@media(max-width:480px){
-  .hero h1{font-size:1.6rem}
-  .countdown{font-size:1.1rem}
-}
+  /* ── SECTION HEADING ── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .section-title span { color: var(--blush); }
+
+  /* ── DAYS GRID ── */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .day-btn {
+    aspect-ratio: 1;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.25s, background 0.25s;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.7);
+    gap: 4px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .day-btn .day-icon { font-size: 1.4rem; }
+  .day-btn.unlocked {
+    background: rgba(232,85,109,0.18);
+    border-color: rgba(232,85,109,0.4);
+    color: #ffd4da;
+  }
+  .day-btn.unlocked:hover { transform: scale(1.07); }
+  .day-btn.big {
+    grid-column: span 2;
+    aspect-ratio: auto;
+    padding: 16px 10px;
+  }
+
+  /* ── REVEALED DAY CONTENT ── */
+  .day-reveal {
+    display: none;
+    animation: fadeUp 0.6s ease both;
+  }
+  .day-reveal.open { display: block; }
+  .day-reveal p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 10px;
+  }
+  .day-reveal p:last-child { margin-bottom: 0; }
+  .day-reveal .highlight {
+    color: var(--blush);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+  }
+
+  /* ── MAGIC BUTTON ── */
+  .magic-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--rose), #b5224a);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    box-shadow: 0 6px 28px rgba(232,85,109,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .magic-btn:hover { transform: scale(1.03); box-shadow: 0 10px 40px rgba(232,85,109,0.55); }
+  .magic-btn:active { transform: scale(0.98); }
+
+  /* ── SECRET MESSAGE ── */
+  .secret-msg {
+    display: none;
+    margin-top: 18px;
+    text-align: center;
+    animation: fadeUp 0.7s ease both;
+  }
+  .secret-msg.open { display: block; }
+  .secret-msg .big-heart { font-size: 3rem; display: block; animation: pulse 1.5s ease infinite; }
+  .secret-msg p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.15); }
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 40px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATION DELAYS ── */
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  .card:nth-child(5) { animation-delay: 0.5s; }
+  .card:nth-child(6) { animation-delay: 0.6s; }
+
+  @media(max-width:380px) {
+    .hero h1 { font-size: 2.4rem; }
+    .days-grid { grid-template-columns: repeat(3,1fr); }
+    .day-btn.big { grid-column: span 3; }
+  }
 </style>
 </head>
-
 <body>
 
-<!-- Floating Hearts -->
-<div class="heart-bg">
-  <span style="left:10%">❤️</span>
-  <span style="left:30%;animation-delay:2s">💖</span>
-  <span style="left:50%;animation-delay:4s">💕</span>
-  <span style="left:70%;animation-delay:1s">💗</span>
-  <span style="left:90%;animation-delay:3s">💓</span>
-</div>
+<!-- Background mesh -->
+<div class="bg-mesh"></div>
+
+<!-- Petals -->
+<div class="petals" id="petals"></div>
 
 <div class="container">
 
+  <!-- HERO -->
   <div class="hero">
-    <h1>Hey Diksha ❤️</h1>
-    <p>Something special is coming… just for you</p>
-    <div class="countdown" id="countdown"></div>
+    <p class="hero-eyebrow">✦ A special week for a special girl ✦</p>
+    <h1>Hey, Diksha ❤️</h1>
+    <p class="hero-sub">Your birthday week has officially begun…</p>
   </div>
 
-  <div class="card nickname">
-    <span>My Mau 🐾</span>
-    <span>My Rasmalai 🍮</span>
-    <span>My Jilebi 🧡</span>
-    <span>My Bal 😌</span>
+  <!-- COUNTDOWN -->
+  <div class="countdown-wrap">
+    <div class="countdown-unit"><div class="num" id="cd-days">--</div><div class="label">Days</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-hours">--</div><div class="label">Hours</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-mins">--</div><div class="label">Mins</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-secs">--</div><div class="label">Secs</div></div>
   </div>
 
-  <div class="card">
-    <p>You think no one hypes your birthday…</p>
-    <p><b>But this time is different.</b></p>
-    <p>This time, you’re getting the hype you deserve 🎉</p>
-  </div>
-
-  <div class="card">
-    <p>Gold medalist 🧬</p>
-    <p>Working hard every day 💼</p>
-    <p>Soft heart, big emotions ❤️</p>
-  </div>
-
-  <div class="card">
-    <p>You get angry quickly 😤</p>
-    <p>But that just means you care deeply ❤️</p>
-  </div>
-
-  <div class="card">
-    <p><b>7 Days. 7 Surprises 🎁</b></p>
-    <div class="days">
-      <div class="day" onclick="openDay1()">Day 1 💖</div>
-      <div class="day">Day 2 🔒</div>
-      <div class="day">Day 3 🔒</div>
-      <div class="day">Day 4 🔒</div>
-      <div class="day">Day 5 🔒</div>
-      <div class="day">Day 6 🔒</div>
-      <div class="day">Day 7 🎂</div>
+  <!-- NICKNAMES -->
+  <div class="card" style="text-align:center">
+    <p style="font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--blush);margin-bottom:14px;opacity:0.8">All the ways I think of you</p>
+    <div class="nicknames">
+      <span class="nick">My Mau 🐾</span>
+      <span class="nick">My Rasmalai 🍮</span>
+      <span class="nick">My Jilebi 🧡</span>
+      <span class="nick">My Balu 😌</span>
+      <span class="nick">My Gold Medal 🥇</span>
+      <span class="nick" title="Given by her family 🏠">Bittu 🏠 <span style="font-size:0.65rem;opacity:0.6">(fam's name)</span></span>
     </div>
   </div>
 
-  <!-- Day 1 -->
-  <div class="card hidden" id="day1">
-    <h3>Day 1 💖</h3>
-    <p>Hi my Mau 😌</p>
-    <p>Let’s start this properly…</p>
-    <p>You made me wait <b>5-6 months</b> for your YES 😤</p>
-    <p>So now it’s my turn 😏</p>
-    <p><b>I’ll make you wait 7 days for your birthday surprise 🎁</b></p>
-    <p>Don’t worry… it’ll be worth it 😉</p>
-    <p><b>You are loved. A lot. ❤️</b></p>
+  <!-- OPENING QUOTE -->
+  <div class="card card-accent">
+    <p class="quote">"You waited for someone to hype your birthday.<br>This time, that someone is me —<br>and I'm not holding back."</p>
+    <p class="quote-attr">— Someone who thinks about you a lot</p>
   </div>
 
+  <!-- WHO SHE IS -->
   <div class="card">
-    <p>Tap below 👇</p>
-    <button onclick="showMsg()">Tap Me 💌</button>
-    <p id="msg" class="hidden">Your birthday week has officially started ❤️</p>
+    <p class="section-title">What I see when I look at <span>you</span></p>
+    <div class="trait">
+      <span class="trait-icon">🥇</span>
+      <span class="trait-text"><b>Gold medalist.</b> You didn't get that by being ordinary. You earned it. Every single day.</span>
+    </div>
+    <div class="trait">
+      <span class="trait-icon">💼</span>
+      <span class="trait-text"><b>Quietly hard-working.</b> You don't brag. You just show up and do the work — and that is genuinely rare.</span>
+    </div>
+    <div class="trait">
+      <span class="trait-icon">🌊</span>
+      <span class="trait-text"><b>Big, deep emotions.</b> You feel things fully. That's not a weakness — that's what makes you real.</span>
+    </div>
+    <div class="trait">
+      <span class="trait-icon">😤</span>
+      <span class="trait-text"><b>You get angry fast.</b> Only because you care deeply. I'd rather have your honest fire than someone's cold indifference.</span>
+    </div>
+    <div class="trait">
+      <span class="trait-icon">🫀</span>
+      <span class="trait-text"><b>Soft heart.</b> You try to hide it sometimes. But I've seen it. And it's one of my favourite things about you.</span>
+    </div>
   </div>
 
-  <div class="footer">Made with ❤️ just for you</div>
+  <!-- THE WAIT STORY -->
+  <div class="card">
+    <p class="section-title">Let me be <span>honest</span> for a second…</p>
+    <div class="day-reveal open" id="story">
+      <p>You made me wait <b style="color:var(--blush)">5–6 months</b> for your yes.</p>
+      <p>Five. To. Six. Months. 😭</p>
+      <p>I counted every single day, Diksha. Every "maybe", every silence, every moment I wondered if I was just making a fool of myself.</p>
+      <p>But here's the thing — <span class="highlight">it was worth every single day of waiting.</span></p>
+      <p>So now? It's your turn to wait a little. Just 7 days. And I promise — it'll be worth it too. 😏</p>
+    </div>
+  </div>
+
+  <!-- 7 DAYS SURPRISES -->
+  <div class="card">
+    <p class="section-title"><span>7 Days.</span> 7 Surprises. 🎁</p>
+    <p style="font-size:0.82rem;color:rgba(255,255,255,0.55);text-align:center;margin-bottom:16px">One surprise unlocks each day. No skipping. 😌</p>
+    <div class="days-grid">
+      <div class="day-btn unlocked" onclick="toggleDay('d1')">
+        <span class="day-icon">💌</span>
+        <span>Day 1</span>
+      </div>
+      <div class="day-btn" id="btn-d2">
+        <span class="day-icon">🔒</span>
+        <span>Day 2</span>
+      </div>
+      <div class="day-btn" id="btn-d3">
+        <span class="day-icon">🔒</span>
+        <span>Day 3</span>
+      </div>
+      <div class="day-btn" id="btn-d4">
+        <span class="day-icon">🔒</span>
+        <span>Day 4</span>
+      </div>
+      <div class="day-btn" id="btn-d5">
+        <span class="day-icon">🔒</span>
+        <span>Day 5</span>
+      </div>
+      <div class="day-btn" id="btn-d6">
+        <span class="day-icon">🔒</span>
+        <span>Day 6</span>
+      </div>
+      <div class="day-btn big" id="btn-d7">
+        <span class="day-icon">🔒</span>
+        <span>Day 7 — Birthday!</span>
+      </div>
+    </div>
+
+    <!-- Day Contents -->
+    <div class="day-reveal" id="d1" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1)">
+      <p class="highlight" style="text-align:center;margin-bottom:12px">Day 1 — The Beginning 💌</p>
+      <p>Hi Mau. 😌</p>
+      <p>So we're really doing this. A whole birthday <em>week</em>, just for you. Because one day was never going to be enough.</p>
+      <p>Today, I just want to say: <span class="highlight">you deserve to be celebrated — loudly, properly, and without apology.</span></p>
+      <p>And I'm going to make sure that happens. Starting now. 💛</p>
+    </div>
+
+    <div class="day-reveal" id="d7" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1)">
+      <p class="highlight" style="text-align:center;margin-bottom:12px">Day 7 — Your Birthday 🎂</p>
+      <p>Diksha.</p>
+      <p>Happy Birthday to the girl who made me wait 5 months, who gets angry beautifully, who works harder than anyone I know, and who somehow ended up being my favourite person.</p>
+      <p><span class="highlight">I'm so glad you were born. And I'm even more glad you said yes. ❤️</span></p>
+      <p>Today is your day. All of it. 🎉</p>
+    </div>
+  </div>
+
+  <!-- MAGIC BUTTON -->
+  <div class="card" style="text-align:center">
+    <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:16px">One more thing…</p>
+    <button class="magic-btn" onclick="revealSecret()">Press this. Trust me. 💌</button>
+
+    <div class="secret-msg" id="secret">
+      <span class="big-heart">🫀</span>
+      <p>Your birthday week has officially started.<br>
+      Every day, there's something waiting for you.<br>
+      But more than any surprise —<br>
+      <span class="highlight">just know that you are loved.<br>Completely. Wholeheartedly.<br>You. ❤️</span></p>
+    </div>
+  </div>
+
+  <div class="footer">Made with every bit of love I have — just for you ❤️</div>
 
 </div>
 
+<!-- Background Music -->
+<audio id="bgMusic" loop preload="auto" playsinline>
+  <source src="https://drive.google.com/uc?export=download&id=1Tfqw0uBjzpoVknqEvEQjVD7MfRzxxYQu" type="audio/mpeg">
+</audio>
+
 <script>
-const birthday = new Date("April 1, 2026 00:00:00").getTime();
-setInterval(()=>{
-  const now=new Date().getTime();
-  const d=birthday-now;
-  const days=Math.floor(d/(1000*60*60*24));
-  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const m=Math.floor((d%(1000*60*60))/(1000*60));
-  document.getElementById("countdown").innerHTML=`${days}d ${h}h ${m}m left 🎂`;
-},1000);
+  // ── PETALS ──
+  const petalEmojis = ['🌸','❤️','💖','🌹','💗','✨','🌺','💕'];
+  const petalsContainer = document.getElementById('petals');
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('span');
+    s.className = 'petal';
+    s.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDuration = (7 + Math.random() * 8) + 's';
+    s.style.animationDelay = (Math.random() * 10) + 's';
+    s.style.fontSize = (14 + Math.random() * 14) + 'px';
+    petalsContainer.appendChild(s);
+  }
 
-function showMsg(){document.getElementById("msg").classList.remove("hidden")}
-function openDay1(){document.getElementById("day1").classList.remove("hidden");window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
-</script>
+  // ── COUNTDOWN ──
+  function updateCountdown() {
+    const birthday = new Date("April 1, 2026 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = birthday - now;
+    if (diff <= 0) {
+      document.querySelector('.countdown-wrap').innerHTML =
+        '<div style="font-family:Playfair Display,serif;font-size:1.4rem;font-style:italic;color:var(--blush)">🎂 It\'s your birthday! 🎂</div>';
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 
-  <!-- Romantic Music -->
-  <!-- Replace the src below with your own audio file URL -->
-  <audio id="bgMusic" loop preload="auto" playsinline>
-    <source src="https://drive.google.com/uc?export=download&id=1Tfqw0uBjzpoVknqEvEQjVD7MfRzxxYQu" type="audio/mpeg">
-  </audio>
+  // ── DAY TOGGLE ──
+  function toggleDay(id) {
+    const el = document.getElementById(id);
+    const isOpen = el.classList.contains('open');
+    el.classList.toggle('open');
+    if (!isOpen) {
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+    }
+  }
 
-  <script>
+  // ── SECRET REVEAL ──
+  function revealSecret() {
+    const el = document.getElementById('secret');
+    el.classList.add('open');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ── MUSIC ──
   const music = document.getElementById('bgMusic');
-
-  // Try autoplay muted first (works on most mobile browsers)
   window.addEventListener('load', () => {
     music.muted = true;
     music.play().then(() => {
-      // Unmute after first interaction
-      document.body.addEventListener('click', () => {
-        music.muted = false;
-      }, { once: true });
+      document.body.addEventListener('click', () => { music.muted = false; }, { once: true });
     }).catch(() => {
-      // If blocked, play on first tap
-      document.body.addEventListener('click', () => {
-        music.play();
-      }, { once: true });
+      document.body.addEventListener('click', () => { music.play(); }, { once: true });
     });
   });
-  </script>
+</script>
 
 </body>
 </html>
