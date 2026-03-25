@@ -177,7 +177,6 @@ body{font-family:'DM Sans',sans-serif;background:#1a040b;color:#fff;overflow-x:h
       <div class="pol-wrap">
         <div class="pol-stack-area" id="polStackEl"></div>
         <div class="pol-cap-area">
-          <div class="pol-emo-lbl" id="polEmoEl"></div>
           <div class="pol-love-txt" id="polLoveEl"></div>
         </div>
         <div class="pol-dots" id="polDotsEl"></div>
@@ -403,7 +402,6 @@ function polBuildStack() {
 
 function polUpdateCaption() {
   var sl = POL_SLIDES[polIdx];
-  document.getElementById('polEmoEl').textContent = sl.emotion.toUpperCase();
   var lv = document.getElementById('polLoveEl');
   lv.style.opacity = '0';
   setTimeout(function() { lv.textContent = sl.love; lv.style.opacity = '1'; }, 200);
