@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diksha’s Birthday Countdown ❤️</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* Floating hearts */
+.heart-bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  z-index:-1;
+}
+.heart-bg span{
+  position:absolute;
+  bottom:-50px;
+  font-size:20px;
+  animation:float 8s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0) scale(1);opacity:1}
+  100%{transform:translateY(-100vh) scale(1.5);opacity:0}
+}
+
+.container{
+  max-width:500px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{
+  text-align:center;
+  margin-top:20px;
+}
+.hero h1{
+  font-size:2rem;
+}
+.hero p{
+  opacity:0.9;
+  font-size:0.95rem;
+}
+
+.countdown{
+  margin:20px 0;
+  font-size:1.3rem;
+  font-weight:600;
+}
+
+.card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(12px);
+  padding:18px;
+  border-radius:20px;
+  margin:15px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  animation:fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.nickname span{
+  display:block;
+  margin:5px 0;
+}
+
+.days{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.day{
+  padding:12px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.2);
+  font-size:0.85rem;
+  cursor:pointer;
+  transition:0.3s;
+}
+.day:hover{transform:scale(1.05)}
+
+button{
+  margin-top:10px;
+  padding:10px 16px;
+  border:none;
+  border-radius:20px;
+  background:#ff6b81;
+  color:white;
+  font-size:0.9rem;
+  cursor:pointer;
+}
+
+.hidden{display:none}
+
+.footer{
+  text-align:center;
+  font-size:0.8rem;
+  opacity:0.8;
+  margin-top:20px;
+}
+
+@media(max-width:480px){
+  .hero h1{font-size:1.6rem}
+  .countdown{font-size:1.1rem}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts -->
+<div class="heart-bg">
+  <span style="left:10%">❤️</span>
+  <span style="left:30%;animation-delay:2s">💖</span>
+  <span style="left:50%;animation-delay:4s">💕</span>
+  <span style="left:70%;animation-delay:1s">💗</span>
+  <span style="left:90%;animation-delay:3s">💓</span>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Hey Diksha ❤️</h1>
+    <p>Something special is coming… just for you</p>
+    <div class="countdown" id="countdown"></div>
+  </div>
+
+  <div class="card nickname">
+    <span>My Mau 🐾</span>
+    <span>My Rasmalai 🍮</span>
+    <span>My Jilebi 🧡</span>
+    <span>My Bal 😌</span>
+  </div>
+
+  <div class="card">
+    <p>You think no one hypes your birthday…</p>
+    <p><b>But this time is different.</b></p>
+    <p>This time, you’re getting the hype you deserve 🎉</p>
+  </div>
+
+  <div class="card">
+    <p>Gold medalist 🧬</p>
+    <p>Working hard every day 💼</p>
+    <p>Soft heart, big emotions ❤️</p>
+  </div>
+
+  <div class="card">
+    <p>You get angry quickly 😤</p>
+    <p>But that just means you care deeply ❤️</p>
+  </div>
+
+  <div class="card">
+    <p><b>7 Days. 7 Surprises 🎁</b></p>
+    <div class="days">
+      <div class="day" onclick="openDay1()">Day 1 💖</div>
+      <div class="day">Day 2 🔒</div>
+      <div class="day">Day 3 🔒</div>
+      <div class="day">Day 4 🔒</div>
+      <div class="day">Day 5 🔒</div>
+      <div class="day">Day 6 🔒</div>
+      <div class="day">Day 7 🎂</div>
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="card hidden" id="day1">
+    <h3>Day 1 💖</h3>
+    <p>Hi my Mau 😌</p>
+    <p>Let’s start this properly…</p>
+    <p>You made me wait <b>5-6 months</b> for your YES 😤</p>
+    <p>So now it’s my turn 😏</p>
+    <p><b>I’ll make you wait 7 days for your birthday surprise 🎁</b></p>
+    <p>Don’t worry… it’ll be worth it 😉</p>
+    <p><b>You are loved. A lot. ❤️</b></p>
+  </div>
+
+  <div class="card">
+    <p>Tap below 👇</p>
+    <button onclick="showMsg()">Tap Me 💌</button>
+    <p id="msg" class="hidden">Your birthday week has officially started ❤️</p>
+  </div>
+
+  <div class="footer">Made with ❤️ just for you</div>
+
+</div>
+
+<script>
+const birthday = new Date("April 1, 2026 00:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const d=birthday-now;
+  const days=Math.floor(d/(1000*60*60*24));
+  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((d%(1000*60*60))/(1000*60));
+  document.getElementById("countdown").innerHTML=`${days}d ${h}h ${m}m left 🎂`;
+},1000);
+
+function showMsg(){document.getElementById("msg").classList.remove("hidden")}
+function openDay1(){document.getElementById("day1").classList.remove("hidden");window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
+</script>
+
+  <!-- Romantic Music -->
+  <!-- Replace the src below with your own audio file URL -->
+  <audio id="bgMusic" loop>
+    <source src="YOUR_AUDIO_LINK_HERE.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+  const music = document.getElementById('bgMusic');
+
+  // Attempt autoplay (works on some browsers)
+  window.addEventListener('load', () => {
+    music.play().catch(() => {
+      // Autoplay blocked — wait for user interaction
+    });
+  });
+
+  // Play on first user interaction (mobile-friendly)
+  document.body.addEventListener('click', () => {
+    if (music.paused) {
+      music.play();
+    }
+  }, { once: true });
+  </script>
+
+</body>
+</html>
