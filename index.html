@@ -3,438 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diksha's Birthday Week 🎂</title>
-
+<title>Diksha's Birthday Week</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-  :root {
-    --rose:    #e8556d;
-    --blush:   #f7a4b0;
-    --cream:   #fff5f0;
-    --deep:    #2a0a12;
-    --card-bg: rgba(255,255,255,0.10);
-    --card-border: rgba(255,255,255,0.22);
-  }
+:root{--rose:#e8556d;--blush:#f7a4b0;--card-bg:rgba(255,255,255,0.10);--card-border:rgba(255,255,255,0.22);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#1a040b;color:#fff;overflow-x:hidden;min-height:100vh;}
+.bg-mesh{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,#7b1230 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 80% 80%,#c93458 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 50% 50%,#3d0818 0%,transparent 70%),#0f0208;}
+.petals{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.petal{position:absolute;bottom:-60px;animation:floatUp linear infinite;opacity:0.7;}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0deg) scale(0.8);opacity:.8;}50%{opacity:1;}100%{transform:translateY(-110vh) rotate(360deg) scale(1.3);opacity:0;}}
+.container{position:relative;z-index:2;max-width:480px;margin:0 auto;padding:28px 20px 60px;}
+.hero{text-align:center;padding:30px 0 10px;}
+.hero-eyebrow{font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--blush);margin-bottom:14px;opacity:0.85;animation:fadeDown 1s ease both;}
+.hero h1{font-family:'Playfair Display',serif;font-size:3rem;line-height:1.1;background:linear-gradient(135deg,#fff 30%,var(--blush));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeDown 1s 0.2s ease both;}
+.hero-sub{font-size:0.9rem;color:rgba(255,255,255,0.65);margin-top:10px;font-style:italic;animation:fadeDown 1s 0.4s ease both;}
+.countdown-wrap{display:flex;justify-content:center;gap:12px;margin:24px 0;animation:fadeDown 1s 0.6s ease both;}
+.countdown-unit{background:var(--card-bg);border:1px solid var(--card-border);backdrop-filter:blur(16px);border-radius:14px;padding:12px 16px;text-align:center;min-width:64px;}
+.countdown-unit .num{font-family:'Playfair Display',serif;font-size:2rem;line-height:1;color:var(--blush);}
+.countdown-unit .lbl{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;opacity:0.6;margin-top:4px;}
+.card{background:var(--card-bg);border:1px solid var(--card-border);backdrop-filter:blur(18px);border-radius:22px;padding:22px 24px;margin:16px 0;box-shadow:0 8px 40px rgba(0,0,0,0.3);animation:fadeUp 0.9s ease both;}
+.card-accent{border-color:rgba(232,85,109,0.4);background:rgba(232,85,109,0.08);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);}}
+.nicknames{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:6px 0;}
+.nick{background:rgba(232,85,109,0.18);border:1px solid rgba(232,85,109,0.35);border-radius:50px;padding:7px 18px;font-size:0.88rem;color:#ffd4da;font-family:'Playfair Display',serif;font-style:italic;}
+.quote{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;line-height:1.65;color:rgba(255,255,255,0.92);text-align:center;}
+.quote-attr{font-size:0.75rem;text-align:right;color:var(--blush);margin-top:10px;letter-spacing:0.1em;}
+.trait{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.trait:last-child{border-bottom:none;}
+.trait-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px;}
+.trait-text{font-size:0.9rem;line-height:1.5;color:rgba(255,255,255,0.88);}
+.trait-text b{color:var(--blush);font-weight:500;}
+.section-title{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:16px;text-align:center;}
+.section-title span{color:var(--blush);}
+.days-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.day-btn{aspect-ratio:1;border-radius:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.25s,background 0.25s;font-size:0.7rem;color:rgba(255,255,255,0.7);gap:4px;-webkit-tap-highlight-color:transparent;}
+.day-btn.unlocked{background:rgba(232,85,109,0.18);border-color:rgba(232,85,109,0.4);color:#ffd4da;}
+.day-btn.unlocked:hover{transform:scale(1.07);}
+.day-btn.big{grid-column:span 2;aspect-ratio:auto;padding:16px 10px;}
+.day-icon{font-size:1.4rem;}
+.day-reveal{display:none;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1);animation:fadeUp 0.6s ease both;}
+.day-reveal.open{display:block;}
+.day-reveal p{font-size:0.92rem;line-height:1.7;color:rgba(255,255,255,0.88);margin-bottom:10px;}
+.day-reveal p:last-child{margin-bottom:0;}
+.highlight{color:var(--blush);font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;}
+.magic-btn{display:block;width:100%;padding:15px;background:linear-gradient(135deg,var(--rose),#b5224a);color:#fff;border:none;border-radius:50px;font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;cursor:pointer;letter-spacing:0.05em;box-shadow:0 6px 28px rgba(232,85,109,0.45);transition:transform 0.2s,box-shadow 0.2s;-webkit-tap-highlight-color:transparent;}
+.magic-btn:hover{transform:scale(1.03);}
+.magic-btn:active{transform:scale(0.98);}
+.secret-msg{display:none;margin-top:18px;text-align:center;animation:fadeUp 0.7s ease both;}
+.secret-msg.open{display:block;}
+.secret-msg .big-heart{font-size:3rem;display:block;animation:pulse 1.5s ease infinite;}
+.secret-msg p{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,0.9);margin-top:10px;line-height:1.6;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+.footer{text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.35);margin-top:40px;letter-spacing:0.1em;}
 
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+/* POLAROID */
+.pol-wrap{display:flex;flex-direction:column;align-items:center;}
+.pol-stack-area{position:relative;width:220px;height:278px;margin:0 auto 18px;cursor:pointer;user-select:none;}
+.pol-card{position:absolute;inset:0;width:220px;background:#fff;border-radius:4px;padding:12px 12px 42px;box-shadow:0 8px 32px rgba(0,0,0,0.55),0 2px 8px rgba(0,0,0,0.25);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),opacity 0.3s ease;transform-origin:bottom center;}
+.pol-photo{width:100%;height:178px;border-radius:2px;overflow:hidden;background:#f0e0e6;display:flex;align-items:center;justify-content:center;position:relative;}
+.pol-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.pol-ph{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.pol-ph-icon{font-size:24px;}
+.pol-ph-txt{font-size:10px;font-family:sans-serif;color:rgba(180,60,90,0.5);text-align:center;padding:0 8px;}
+.pol-etag{position:absolute;top:8px;left:8px;background:rgba(232,85,109,0.88);color:#fff;font-size:9px;font-family:sans-serif;letter-spacing:0.15em;text-transform:uppercase;padding:2px 7px;border-radius:20px;}
+.pol-sub{margin-top:9px;font-family:'Playfair Display',serif;font-style:italic;font-size:11.5px;color:#3a1020;text-align:center;line-height:1.4;}
+.pol-card.pol-b1{transform:rotate(-5deg) translateY(6px);z-index:1;opacity:.85;}
+.pol-card.pol-b2{transform:rotate(4deg) translateY(10px);z-index:0;opacity:.65;}
+.pol-card.pol-b3{transform:rotate(-8deg) translateY(14px);z-index:-1;opacity:.4;}
+.pol-card.pol-active{transform:rotate(0deg) translateY(0);z-index:10;}
+.pol-card.pol-fly-l{animation:polFlyL 0.4s ease forwards;}
+.pol-card.pol-fly-r{animation:polFlyR 0.4s ease forwards;}
+@keyframes polFlyL{0%{transform:rotate(0) translateX(0);opacity:1;}100%{transform:rotate(-18deg) translateX(-300px);opacity:0;}}
+@keyframes polFlyR{0%{transform:rotate(0) translateX(0);opacity:1;}100%{transform:rotate(18deg) translateX(300px);opacity:0;}}
+.pol-cap-area{text-align:center;max-width:280px;min-height:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:14px;}
+.pol-emo-lbl{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(247,164,176,0.8);margin-bottom:6px;font-family:sans-serif;}
+.pol-love-txt{font-family:'Playfair Display',serif;font-style:italic;font-size:0.88rem;color:rgba(255,255,255,0.87);line-height:1.6;transition:opacity 0.25s ease;}
+.pol-dots{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;justify-content:center;}
+.pol-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background 0.3s,transform 0.3s;}
+.pol-dot.pol-dot-on{background:rgba(247,164,176,0.9);transform:scale(1.35);}
+.pol-nav-row{display:flex;gap:14px;align-items:center;margin-bottom:8px;}
+.pol-nav-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(247,164,176,0.3);background:rgba(255,255,255,0.07);color:rgba(247,164,176,0.9);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,transform 0.15s;}
+.pol-nav-btn:hover{background:rgba(232,85,109,0.2);}
+.pol-nav-btn:active{transform:scale(0.9);}
+.pol-counter{font-size:0.72rem;font-family:sans-serif;color:rgba(255,255,255,0.35);letter-spacing:0.1em;}
+.pol-hint{font-size:0.65rem;font-family:sans-serif;color:rgba(255,255,255,0.22);letter-spacing:0.15em;text-transform:uppercase;}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #1a040b;
-    color: #fff;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-
-  /* ── GRADIENT MESH BACKGROUND ── */
-  .bg-mesh {
-    position: fixed; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, #7b1230 0%, transparent 60%),
-      radial-gradient(ellipse 70% 50% at 80% 80%, #c93458 0%, transparent 55%),
-      radial-gradient(ellipse 60% 80% at 50% 50%, #3d0818 0%, transparent 70%),
-      #0f0208;
-  }
-
-  /* ── FLOATING PETALS ── */
-  .petals { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
-  .petal {
-    position:absolute; bottom:-60px;
-    font-size: 18px;
-    animation: floatUp linear infinite;
-    opacity: 0.7;
-  }
-  @keyframes floatUp {
-    0%   { transform: translateY(0) rotate(0deg) scale(0.8); opacity:.8; }
-    50%  { opacity: 1; }
-    100% { transform: translateY(-110vh) rotate(360deg) scale(1.3); opacity:0; }
-  }
-
-  /* ── CONTAINER ── */
-  .container {
-    position: relative; z-index: 2;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 28px 20px 60px;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    text-align: center;
-    padding: 30px 0 10px;
-  }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--blush);
-    margin-bottom: 14px;
-    opacity: 0.85;
-    animation: fadeDown 1s ease both;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    line-height: 1.1;
-    background: linear-gradient(135deg, #fff 30%, var(--blush));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeDown 1s 0.2s ease both;
-  }
-  .hero-sub {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.65);
-    margin-top: 10px;
-    font-style: italic;
-    animation: fadeDown 1s 0.4s ease both;
-  }
-
-  /* ── COUNTDOWN ── */
-  .countdown-wrap {
-    display: flex; justify-content: center; gap: 12px;
-    margin: 24px 0;
-    animation: fadeDown 1s 0.6s ease both;
-  }
-  .countdown-unit {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    backdrop-filter: blur(16px);
-    border-radius: 14px;
-    padding: 12px 16px;
-    text-align: center;
-    min-width: 64px;
-  }
-  .countdown-unit .num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    line-height: 1;
-    color: var(--blush);
-  }
-  .countdown-unit .label {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.6;
-    margin-top: 4px;
-  }
-
-  /* ── CARDS ── */
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    backdrop-filter: blur(18px);
-    border-radius: 22px;
-    padding: 22px 24px;
-    margin: 16px 0;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-    animation: fadeUp 0.9s ease both;
-  }
-  .card-accent {
-    border-color: rgba(232,85,109,0.4);
-    background: rgba(232,85,109,0.08);
-  }
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(28px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  @keyframes fadeDown {
-    from { opacity:0; transform:translateY(-18px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-
-  /* ── NICKNAMES ── */
-  .nicknames {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    justify-content: center;
-    padding: 6px 0;
-  }
-  .nick {
-    background: rgba(232,85,109,0.18);
-    border: 1px solid rgba(232,85,109,0.35);
-    border-radius: 50px;
-    padding: 7px 18px;
-    font-size: 0.88rem;
-    color: #ffd4da;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-  }
-
-  /* ── QUOTE CARD ── */
-  .quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    font-style: italic;
-    line-height: 1.65;
-    color: rgba(255,255,255,0.92);
-    text-align: center;
-  }
-  .quote-attr {
-    font-size: 0.75rem;
-    text-align: right;
-    color: var(--blush);
-    margin-top: 10px;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── TRAIT LIST ── */
-  .trait {
-    display: flex; align-items: flex-start;
-    gap: 12px; padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-  .trait:last-child { border-bottom: none; }
-  .trait-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
-  .trait-text { font-size: 0.9rem; line-height: 1.5; color: rgba(255,255,255,0.88); }
-  .trait-text b { color: var(--blush); font-weight: 500; }
-
-  /* ── SECTION HEADING ── */
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  .section-title span { color: var(--blush); }
-
-  /* ── DAYS GRID ── */
-  .days-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-  .day-btn {
-    aspect-ratio: 1;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: transform 0.25s, background 0.25s;
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.7);
-    gap: 4px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .day-btn .day-icon { font-size: 1.4rem; }
-  .day-btn.unlocked {
-    background: rgba(232,85,109,0.18);
-    border-color: rgba(232,85,109,0.4);
-    color: #ffd4da;
-  }
-  .day-btn.unlocked:hover { transform: scale(1.07); }
-  .day-btn.big {
-    grid-column: span 2;
-    aspect-ratio: auto;
-    padding: 16px 10px;
-  }
-
-  /* ── REVEALED DAY CONTENT ── */
-  .day-reveal {
-    display: none;
-    animation: fadeUp 0.6s ease both;
-  }
-  .day-reveal.open { display: block; }
-  .day-reveal p {
-    font-size: 0.92rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.88);
-    margin-bottom: 10px;
-  }
-  .day-reveal p:last-child { margin-bottom: 0; }
-  .day-reveal .highlight {
-    color: var(--blush);
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1rem;
-  }
-
-  /* ── MAGIC BUTTON ── */
-  .magic-btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, var(--rose), #b5224a);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-style: italic;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    box-shadow: 0 6px 28px rgba(232,85,109,0.45);
-    transition: transform 0.2s, box-shadow 0.2s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .magic-btn:hover { transform: scale(1.03); box-shadow: 0 10px 40px rgba(232,85,109,0.55); }
-  .magic-btn:active { transform: scale(0.98); }
-
-  /* ── SECRET MESSAGE ── */
-  .secret-msg {
-    display: none;
-    margin-top: 18px;
-    text-align: center;
-    animation: fadeUp 0.7s ease both;
-  }
-  .secret-msg.open { display: block; }
-  .secret-msg .big-heart { font-size: 3rem; display: block; animation: pulse 1.5s ease infinite; }
-  .secret-msg p {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-style: italic;
-    color: rgba(255,255,255,0.9);
-    margin-top: 10px;
-    line-height: 1.6;
-  }
-  @keyframes pulse {
-    0%,100% { transform: scale(1); }
-    50%      { transform: scale(1.15); }
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    text-align: center;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.35);
-    margin-top: 40px;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── ANIMATION DELAYS ── */
-  .card:nth-child(1) { animation-delay: 0.1s; }
-  .card:nth-child(2) { animation-delay: 0.2s; }
-  .card:nth-child(3) { animation-delay: 0.3s; }
-  .card:nth-child(4) { animation-delay: 0.4s; }
-  .card:nth-child(5) { animation-delay: 0.5s; }
-  .card:nth-child(6) { animation-delay: 0.6s; }
-
-  /* ── POLAROID SLIDESHOW (Day 2) ── */
-  .pol-wrap {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 0;
-  }
-  .pol-stack-area {
-    position: relative;
-    width: 220px; height: 278px;
-    margin: 0 auto 18px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .pol-card {
-    position: absolute; inset: 0;
-    width: 220px;
-    background: #fff;
-    border-radius: 4px;
-    padding: 12px 12px 42px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.25);
-    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
-    transform-origin: bottom center;
-  }
-  .pol-card .pol-photo {
-    width: 100%; height: 178px;
-    border-radius: 2px; overflow: hidden;
-    background: #f0e0e6;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .pol-card .pol-photo img { width:100%; height:100%; object-fit:cover; display:block; }
-  .pol-card .pol-photo .pol-ph {
-    display: flex; flex-direction: column; align-items: center; gap: 5px;
-    color: rgba(180,60,90,0.45);
-  }
-  .pol-card .pol-photo .pol-ph-icon { font-size: 24px; }
-  .pol-card .pol-photo .pol-ph-txt {
-    font-size: 10px; font-family: sans-serif;
-    color: rgba(180,60,90,0.45); text-align: center; padding: 0 8px;
-  }
-  .pol-card .pol-etag {
-    position: absolute; top: 8px; left: 8px;
-    background: rgba(232,85,109,0.88); color: #fff;
-    font-size: 9px; font-family: sans-serif;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 2px 7px; border-radius: 20px;
-  }
-  .pol-card .pol-sub {
-    margin-top: 9px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic; font-size: 11.5px;
-    color: #3a1020; text-align: center; line-height: 1.4;
-  }
-  .pol-card.pol-behind-1 { transform: rotate(-5deg) translateY(6px); z-index:1; opacity:.85; }
-  .pol-card.pol-behind-2 { transform: rotate(4deg) translateY(10px); z-index:0; opacity:.65; }
-  .pol-card.pol-behind-3 { transform: rotate(-8deg) translateY(14px); z-index:-1; opacity:.4; }
-  .pol-card.pol-active   { transform: rotate(0deg) translateY(0); z-index:10; }
-  .pol-card.pol-fly-left  { animation: polFlyLeft 0.4s cubic-bezier(0.55,0,1,0.45) forwards; }
-  .pol-card.pol-fly-right { animation: polFlyRight 0.4s cubic-bezier(0.55,0,1,0.45) forwards; }
-  @keyframes polFlyLeft  { 0%{transform:rotate(0) translateX(0) translateY(0);opacity:1} 100%{transform:rotate(-18deg) translateX(-300px) translateY(20px);opacity:0} }
-  @keyframes polFlyRight { 0%{transform:rotate(0) translateX(0) translateY(0);opacity:1} 100%{transform:rotate(18deg) translateX(300px) translateY(20px);opacity:0} }
-
-  .pol-caption-area {
-    text-align: center; max-width: 280px; min-height: 68px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    margin-bottom: 14px;
-  }
-  .pol-emotion-label {
-    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: rgba(247,164,176,0.8); margin-bottom: 6px; font-family: sans-serif;
-  }
-  .pol-love-text {
-    font-family: 'Playfair Display', serif; font-style: italic;
-    font-size: 0.88rem; color: rgba(255,255,255,0.87); line-height: 1.6;
-    transition: opacity 0.25s ease;
-  }
-  .pol-dots { display:flex; gap:6px; margin-bottom:14px; flex-wrap: wrap; justify-content: center; }
-  .pol-dot  { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.2); transition:background 0.3s, transform 0.3s; }
-  .pol-dot.pol-dot-active { background:rgba(247,164,176,0.9); transform:scale(1.35); }
-  .pol-nav-row { display:flex; gap:14px; align-items:center; margin-bottom:8px; }
-  .pol-nav-btn {
-    width:44px; height:44px; border-radius:50%;
-    border:1px solid rgba(247,164,176,0.3);
-    background:rgba(255,255,255,0.07);
-    color:rgba(247,164,176,0.9); font-size:18px;
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; transition:background 0.2s, transform 0.15s;
-  }
-  .pol-nav-btn:hover  { background:rgba(232,85,109,0.2); }
-  .pol-nav-btn:active { transform:scale(0.9); }
-  .pol-counter { font-size:0.72rem; font-family:sans-serif; color:rgba(255,255,255,0.35); letter-spacing:0.1em; }
-  .pol-hint { font-size:0.65rem; font-family:sans-serif; color:rgba(255,255,255,0.22); letter-spacing:0.15em; text-transform:uppercase; }
-
-  @media(max-width:380px) {
-    .hero h1 { font-size: 2.4rem; }
-    .days-grid { grid-template-columns: repeat(3,1fr); }
-    .day-btn.big { grid-column: span 3; }
-  }
+@media(max-width:380px){.hero h1{font-size:2.4rem;}.days-grid{grid-template-columns:repeat(3,1fr);}.day-btn.big{grid-column:span 3;}}
+</style>
 </head>
 <body>
 
-<!-- Background mesh -->
 <div class="bg-mesh"></div>
-
-<!-- Petals -->
 <div class="petals" id="petals"></div>
 
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero">
     <p class="hero-eyebrow">✦ A special week for a special girl ✦</p>
     <h1>Hey, Diksha ❤️</h1>
-    <p class="hero-sub">Your birthday week has officially begun…</p>
+    <p class="hero-sub">Your birthday week has officially begun&hellip;</p>
   </div>
 
-  <!-- COUNTDOWN -->
   <div class="countdown-wrap">
-    <div class="countdown-unit"><div class="num" id="cd-days">--</div><div class="label">Days</div></div>
-    <div class="countdown-unit"><div class="num" id="cd-hours">--</div><div class="label">Hours</div></div>
-    <div class="countdown-unit"><div class="num" id="cd-mins">--</div><div class="label">Mins</div></div>
-    <div class="countdown-unit"><div class="num" id="cd-secs">--</div><div class="label">Secs</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-d">--</div><div class="lbl">Days</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-h">--</div><div class="lbl">Hours</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-m">--</div><div class="lbl">Mins</div></div>
+    <div class="countdown-unit"><div class="num" id="cd-s">--</div><div class="lbl">Secs</div></div>
   </div>
 
-  <!-- NICKNAMES -->
   <div class="card" style="text-align:center">
     <p style="font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--blush);margin-bottom:14px;opacity:0.8">All the ways I think of you</p>
     <div class="nicknames">
@@ -443,309 +121,254 @@
       <span class="nick">My Jilebi 🧡</span>
       <span class="nick">My Balu 😌</span>
       <span class="nick">My Gold Medal 🥇</span>
-      <span class="nick" title="Given by her family 🏠">Bittu 🏠 <span style="font-size:0.65rem;opacity:0.6">(fam's name)</span></span>
+      <span class="nick">Bittu 🏠 <span style="font-size:0.65rem;opacity:0.6">(fam's name)</span></span>
     </div>
   </div>
 
-  <!-- OPENING QUOTE -->
   <div class="card card-accent">
-    <p class="quote">"You waited for someone to hype your birthday.<br>This time, that someone is me —<br>and I'm not holding back."</p>
-    <p class="quote-attr">— Someone who thinks about you a lot</p>
+    <p class="quote">&ldquo;You waited for someone to hype your birthday.<br>This time, that someone is me &mdash;<br>and I&rsquo;m not holding back.&rdquo;</p>
+    <p class="quote-attr">&mdash; Someone who thinks about you a lot</p>
   </div>
 
-  <!-- WHO SHE IS -->
   <div class="card">
     <p class="section-title">What I see when I look at <span>you</span></p>
-    <div class="trait">
-      <span class="trait-icon">🥇</span>
-      <span class="trait-text"><b>Gold medalist.</b> You didn't get that by being ordinary. You earned it. Every single day.</span>
-    </div>
-    <div class="trait">
-      <span class="trait-icon">💼</span>
-      <span class="trait-text"><b>Quietly hard-working.</b> You don't brag. You just show up and do the work — and that is genuinely rare.</span>
-    </div>
-    <div class="trait">
-      <span class="trait-icon">🌊</span>
-      <span class="trait-text"><b>Big, deep emotions.</b> You feel things fully. That's not a weakness — that's what makes you real.</span>
-    </div>
-    <div class="trait">
-      <span class="trait-icon">😤</span>
-      <span class="trait-text"><b>You get angry fast.</b> Only because you care deeply. I'd rather have your honest fire than someone's cold indifference.</span>
-    </div>
-    <div class="trait">
-      <span class="trait-icon">🫀</span>
-      <span class="trait-text"><b>Soft heart.</b> You try to hide it sometimes. But I've seen it. And it's one of my favourite things about you.</span>
-    </div>
+    <div class="trait"><span class="trait-icon">🥇</span><span class="trait-text"><b>Gold medalist.</b> You didn&rsquo;t get that by being ordinary. You earned it. Every single day.</span></div>
+    <div class="trait"><span class="trait-icon">💼</span><span class="trait-text"><b>Quietly hard-working.</b> You don&rsquo;t brag. You just show up and do the work &mdash; and that is genuinely rare.</span></div>
+    <div class="trait"><span class="trait-icon">🌊</span><span class="trait-text"><b>Big, deep emotions.</b> You feel things fully. That&rsquo;s not a weakness &mdash; that&rsquo;s what makes you real.</span></div>
+    <div class="trait"><span class="trait-icon">😤</span><span class="trait-text"><b>You get angry fast.</b> Only because you care deeply. I&rsquo;d rather have your honest fire than someone&rsquo;s cold indifference.</span></div>
+    <div class="trait"><span class="trait-icon">🫀</span><span class="trait-text"><b>Soft heart.</b> You try to hide it sometimes. But I&rsquo;ve seen it. And it&rsquo;s one of my favourite things about you.</span></div>
   </div>
 
-  <!-- THE WAIT STORY -->
   <div class="card">
-    <p class="section-title">Let me be <span>honest</span> for a second…</p>
+    <p class="section-title">Let me be <span>honest</span> for a second&hellip;</p>
     <div class="day-reveal open" id="story">
-      <p>You made me wait <b style="color:var(--blush)">5–6 months</b> for your yes.</p>
+      <p>You made me wait <b style="color:var(--blush)">5&ndash;6 months</b> for your yes.</p>
       <p>Five. To. Six. Months. 😭</p>
-      <p>I counted every single day, Diksha. Every "maybe", every silence, every moment I wondered if I was just making a fool of myself.</p>
-      <p>But here's the thing — <span class="highlight">it was worth every single day of waiting.</span></p>
-      <p>So now? It's your turn to wait a little. Just 7 days. And I promise — it'll be worth it too. 😏</p>
+      <p>I counted every single day. Every &ldquo;maybe&rdquo;, every silence, every moment I wondered if I was making a fool of myself.</p>
+      <p>But here&rsquo;s the thing &mdash; <span class="highlight">it was worth every single day of waiting.</span></p>
+      <p>So now? It&rsquo;s your turn to wait a little. Just 7 days. And I promise &mdash; it&rsquo;ll be worth it too. 😏</p>
     </div>
   </div>
 
-  <!-- 7 DAYS SURPRISES -->
   <div class="card">
     <p class="section-title"><span>7 Days.</span> 7 Surprises. 🎁</p>
     <p style="font-size:0.82rem;color:rgba(255,255,255,0.55);text-align:center;margin-bottom:16px">One surprise unlocks each day. No skipping. 😌</p>
     <div class="days-grid">
-      <div class="day-btn unlocked" onclick="toggleDay('d1')">
-        <span class="day-icon">💌</span>
-        <span>Day 1</span>
-      </div>
-      <div class="day-btn unlocked" onclick="toggleDay('d2')">
-        <span class="day-icon">📸</span>
-        <span>Day 2</span>
-      </div>
-      <div class="day-btn" id="btn-d3">
-        <span class="day-icon">🔒</span>
-        <span>Day 3</span>
-      </div>
-      <div class="day-btn" id="btn-d4">
-        <span class="day-icon">🔒</span>
-        <span>Day 4</span>
-      </div>
-      <div class="day-btn" id="btn-d5">
-        <span class="day-icon">🔒</span>
-        <span>Day 5</span>
-      </div>
-      <div class="day-btn" id="btn-d6">
-        <span class="day-icon">🔒</span>
-        <span>Day 6</span>
-      </div>
-      <div class="day-btn big" id="btn-d7">
-        <span class="day-icon">🔒</span>
-        <span>Day 7 — Birthday!</span>
-      </div>
+      <div class="day-btn unlocked" onclick="toggleDay('d1')"><span class="day-icon">💌</span><span>Day 1</span></div>
+      <div class="day-btn unlocked" onclick="toggleDay('d2')"><span class="day-icon">📸</span><span>Day 2</span></div>
+      <div class="day-btn"><span class="day-icon">🔒</span><span>Day 3</span></div>
+      <div class="day-btn"><span class="day-icon">🔒</span><span>Day 4</span></div>
+      <div class="day-btn"><span class="day-icon">🔒</span><span>Day 5</span></div>
+      <div class="day-btn"><span class="day-icon">🔒</span><span>Day 6</span></div>
+      <div class="day-btn big"><span class="day-icon">🔒</span><span>Day 7 &mdash; Birthday!</span></div>
     </div>
 
-    <!-- Day Contents -->
-    <div class="day-reveal" id="d1" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1)">
-      <p class="highlight" style="text-align:center;margin-bottom:12px">Day 1 — The Beginning 💌</p>
+    <div class="day-reveal" id="d1">
+      <p class="highlight" style="text-align:center;margin-bottom:12px">Day 1 &mdash; The Beginning 💌</p>
       <p>Hi Mau. 😌</p>
-      <p>So we're really doing this. A whole birthday <em>week</em>, just for you. Because one day was never going to be enough.</p>
-      <p>Today, I just want to say: <span class="highlight">you deserve to be celebrated — loudly, properly, and without apology.</span></p>
-      <p>And I'm going to make sure that happens. Starting now. 💛</p>
+      <p>So we&rsquo;re really doing this. A whole birthday <em>week</em>, just for you. Because one day was never going to be enough.</p>
+      <p>Today, I just want to say: <span class="highlight">you deserve to be celebrated &mdash; loudly, properly, and without apology.</span></p>
+      <p>And I&rsquo;m going to make sure that happens. Starting now. 💛</p>
     </div>
 
-    <!-- DAY 2 REVEAL — POLAROID SLIDESHOW -->
-    <div class="day-reveal" id="d2" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1)">
-      <p class="highlight" style="text-align:center;margin-bottom:6px">Day 2 — Every Side of You 📸</p>
+    <div class="day-reveal" id="d2">
+      <p class="highlight" style="text-align:center;margin-bottom:6px">Day 2 &mdash; Every Side of You 📸</p>
       <p style="font-size:0.82rem;text-align:center;color:rgba(255,255,255,0.55);margin-bottom:16px">Swipe through. I love every single one of these. 🌹</p>
-
-      <!-- POLAROID SLIDESHOW -->
       <div class="pol-wrap">
-        <div class="pol-stack-area" id="polStack"></div>
-
-        <div class="pol-caption-area">
-          <div class="pol-emotion-label" id="polEmotion"></div>
-          <div class="pol-love-text" id="polLove"></div>
+        <div class="pol-stack-area" id="polStackEl"></div>
+        <div class="pol-cap-area">
+          <div class="pol-emo-lbl" id="polEmoEl"></div>
+          <div class="pol-love-txt" id="polLoveEl"></div>
         </div>
-
-        <div class="pol-dots" id="polDots"></div>
-
+        <div class="pol-dots" id="polDotsEl"></div>
         <div class="pol-nav-row">
-          <button class="pol-nav-btn" onclick="polNavigate(-1)">&#8592;</button>
-          <span class="pol-counter" id="polCounter">1 / 10</span>
-          <button class="pol-nav-btn" onclick="polNavigate(1)">&#8594;</button>
+          <button class="pol-nav-btn" onclick="polNav(-1)">&#8592;</button>
+          <span class="pol-counter" id="polCountEl">1 / 10</span>
+          <button class="pol-nav-btn" onclick="polNav(1)">&#8594;</button>
         </div>
-        <p class="pol-hint">tap card or use arrows · swipe on mobile</p>
+        <p class="pol-hint">tap card or use arrows &middot; swipe on mobile</p>
       </div>
     </div>
 
-    <div class="day-reveal" id="d7" style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.1)">
-      <p class="highlight" style="text-align:center;margin-bottom:12px">Day 7 — Your Birthday 🎂</p>
+    <div class="day-reveal" id="d7">
+      <p class="highlight" style="text-align:center;margin-bottom:12px">Day 7 &mdash; Your Birthday 🎂</p>
       <p>Diksha.</p>
       <p>Happy Birthday to the girl who made me wait 5 months, who gets angry beautifully, who works harder than anyone I know, and who somehow ended up being my favourite person.</p>
-      <p><span class="highlight">I'm so glad you were born. And I'm even more glad you said yes. ❤️</span></p>
+      <p><span class="highlight">I&rsquo;m so glad you were born. And I&rsquo;m even more glad you said yes. ❤️</span></p>
       <p>Today is your day. All of it. 🎉</p>
     </div>
   </div>
 
-  <!-- MAGIC BUTTON -->
   <div class="card" style="text-align:center">
-    <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:16px">One more thing…</p>
+    <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:16px">One more thing&hellip;</p>
     <button class="magic-btn" onclick="revealSecret()">Press this. Trust me. 💌</button>
-
     <div class="secret-msg" id="secret">
       <span class="big-heart">🫀</span>
-      <p>Your birthday week has officially started.<br>
-      Every day, there's something waiting for you.<br>
-      But more than any surprise —<br>
-      <span class="highlight">just know that you are loved.<br>Completely. Wholeheartedly.<br>You. ❤️</span></p>
+      <p>Your birthday week has officially started.<br>Every day, there&rsquo;s something waiting for you.<br>But more than any surprise &mdash;<br><span class="highlight">just know that you are loved.<br>Completely. Wholeheartedly. You. ❤️</span></p>
     </div>
   </div>
 
-  <div class="footer">Made with every bit of love I have — just for you ❤️</div>
-
+  <div class="footer">Made with every bit of love I have &mdash; just for you ❤️</div>
 </div>
 
-<!-- Background Music -->
 <audio id="bgMusic" loop preload="auto" playsinline>
   <source src="https://drive.google.com/uc?export=download&id=1Tfqw0uBjzpoVknqEvEQjVD7MfRzxxYQu" type="audio/mpeg">
 </audio>
 
 <script>
-  // ── PETALS ──
-  const petalEmojis = ['🌸','❤️','💖','🌹','💗','✨','🌺','💕'];
-  const petalsContainer = document.getElementById('petals');
-  for (let i = 0; i < 22; i++) {
-    const s = document.createElement('span');
-    s.className = 'petal';
-    s.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
-    s.style.left = Math.random() * 100 + '%';
-    s.style.animationDuration = (7 + Math.random() * 8) + 's';
-    s.style.animationDelay = (Math.random() * 10) + 's';
-    s.style.fontSize = (14 + Math.random() * 14) + 'px';
-    petalsContainer.appendChild(s);
+// PETALS
+var petalList = ['\u2764\ufe0f','\u{1F496}','\u{1F338}','\u{1F339}','\u{1F497}','\u2728','\u{1F33A}','\u{1F495}'];
+var petalsCont = document.getElementById('petals');
+for (var pi = 0; pi < 22; pi++) {
+  var ps = document.createElement('span');
+  ps.className = 'petal';
+  ps.textContent = petalList[Math.floor(Math.random() * petalList.length)];
+  ps.style.left = (Math.random() * 100) + '%';
+  ps.style.fontSize = (14 + Math.random() * 14) + 'px';
+  ps.style.animationDuration = (7 + Math.random() * 8) + 's';
+  ps.style.animationDelay = (Math.random() * 10) + 's';
+  petalsCont.appendChild(ps);
+}
+
+// COUNTDOWN
+function updateCountdown() {
+  var birthday = new Date('April 1, 2026 00:00:00').getTime();
+  var now = new Date().getTime();
+  var diff = birthday - now;
+  if (diff <= 0) {
+    document.querySelector('.countdown-wrap').innerHTML = '<div style="font-family:Playfair Display,serif;font-size:1.4rem;font-style:italic;color:var(--blush)">Happy Birthday! \ud83c\udf82</div>';
+    return;
   }
+  var dd = Math.floor(diff / 86400000);
+  var hh = Math.floor((diff % 86400000) / 3600000);
+  var mm = Math.floor((diff % 3600000) / 60000);
+  var ss = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-d').textContent = String(dd).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(hh).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(mm).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(ss).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
-  // ── COUNTDOWN ──
-  function updateCountdown() {
-    const birthday = new Date("April 1, 2026 00:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = birthday - now;
-    if (diff <= 0) {
-      document.querySelector('.countdown-wrap').innerHTML =
-        '<div style="font-family:Playfair Display,serif;font-size:1.4rem;font-style:italic;color:var(--blush)">🎂 It\'s your birthday! 🎂</div>';
-      return;
-    }
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const s = Math.floor((diff % (1000*60)) / 1000);
-    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
-    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+// DAY TOGGLE
+function toggleDay(id) {
+  var el = document.getElementById(id);
+  var wasOpen = el.classList.contains('open');
+  el.classList.toggle('open');
+  if (!wasOpen) {
+    setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+    if (id === 'd2') setTimeout(initPolaroid, 80);
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+}
 
-  // ── DAY TOGGLE ──
-  function toggleDay(id) {
-    const el = document.getElementById(id);
-    const isOpen = el.classList.contains('open');
-    el.classList.toggle('open');
-    if (!isOpen) {
-      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-      if (id === 'd2') setTimeout(initPolaroid, 80);
-    }
-  }
+// SECRET
+function revealSecret() {
+  var el = document.getElementById('secret');
+  el.classList.add('open');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 
-  // ── SECRET REVEAL ──
-  function revealSecret() {
-    const el = document.getElementById('secret');
-    el.classList.add('open');
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  // ── MUSIC ──
-  const music = document.getElementById('bgMusic');
-  window.addEventListener('load', () => {
-    music.muted = true;
-    music.play().then(() => {
-      document.body.addEventListener('click', () => { music.muted = false; }, { once: true });
-    }).catch(() => {
-      document.body.addEventListener('click', () => { music.play(); }, { once: true });
-    });
-  });
-  // ── POLAROID SLIDESHOW (Day 2) ──
-  const polSlides = [
-    { emotion:'Happy',    url:'YOUR_PHOTO_URL_HERE', sub:'Pure sunshine',           love:"Your happiness is contagious. One smile from you and my whole day resets." },
-    { emotion:'Laughing', url:'YOUR_PHOTO_URL_HERE', sub:"Can't stop won't stop",   love:"The way you laugh — head back, completely unguarded — is my favourite sound in the world." },
-    { emotion:'Sleepy',   url:'YOUR_PHOTO_URL_HERE', sub:'5 more minutes…',          love:"Sleepy you is dangerously cute. I could watch you pretend you're not tired forever." },
-    { emotion:'Angry',    url:'YOUR_PHOTO_URL_HERE', sub:'Uh oh 😤',                love:"Even when you're angry, you're beautiful. Also slightly terrifying. But mostly beautiful." },
-    { emotion:'Shy',      url:'YOUR_PHOTO_URL_HERE', sub:"Don't look at me",         love:"That little shy smile when I compliment you? I live for that moment every single time." },
-    { emotion:'Focused',  url:'YOUR_PHOTO_URL_HERE', sub:'Gold medalist mode 🥇',    love:"Watching you work is something else. You don't try to be impressive — you just are." },
-    { emotion:'Emotional',url:'YOUR_PHOTO_URL_HERE', sub:'Feels too deeply 🌊',      love:"You feel everything so fully. That soft heart of yours is one of the best things about you." },
-    { emotion:'Excited',  url:'YOUR_PHOTO_URL_HERE', sub:"She's going off ✨",       love:"Excited you is the best you. Your whole face lights up. I'd do anything to keep seeing that." },
-    { emotion:'Serious',  url:'YOUR_PHOTO_URL_HERE', sub:"Don't mess with her",      love:"That serious look means business. It's also the exact moment I fall a little more." },
-    { emotion:'Just her', url:'YOUR_PHOTO_URL_HERE', sub:'My favourite person 🌹',   love:"No filter, no performance — just you. This is the version I love most of all." }
-  ];
-  let polCurrent = 0, polAnimating = false;
-  const polStackEl = document.getElementById('polStack');
-  const polDotsEl  = document.getElementById('polDots');
-
-  function polBuildDots() {
-    polDotsEl.innerHTML = '';
-    polSlides.forEach((_, i) => {
-      const d = document.createElement('div');
-      d.className = 'pol-dot' + (i === polCurrent ? ' pol-dot-active' : '');
-      polDotsEl.appendChild(d);
+// MUSIC
+var music = document.getElementById('bgMusic');
+window.addEventListener('load', function() {
+  music.muted = true;
+  var p = music.play();
+  if (p !== undefined) {
+    p.then(function() {
+      document.body.addEventListener('click', function() { music.muted = false; }, { once: true });
+    }).catch(function() {
+      document.body.addEventListener('click', function() { music.play(); }, { once: true });
     });
   }
+});
 
-  function polBuildStack() {
-    polStackEl.innerHTML = '';
-    const offsets = [];
-    for (let o = Math.min(3, polSlides.length - 1); o >= 0; o--) {
-      offsets.push({ idx: (polCurrent + o) % polSlides.length, o });
-    }
-    offsets.forEach(({ idx, o }) => {
-      const sl = polSlides[idx];
-      const card = document.createElement('div');
-      card.className = 'pol-card ' + (o === 0 ? 'pol-active' : 'pol-behind-' + o);
-      card.innerHTML =
-        '<div class="pol-photo">' +
-          (sl.url !== 'YOUR_PHOTO_URL_HERE'
-            ? '<img src="' + sl.url + '" alt="' + sl.emotion + '">'
-            : '<div class="pol-ph"><div class="pol-ph-icon">📷</div><div class="pol-ph-txt">Add ' + sl.emotion + ' photo</div></div>'
-          ) +
-          '<div class="pol-etag">' + sl.emotion + '</div>' +
-        '</div>' +
-        '<div class="pol-sub">' + sl.sub + '</div>';
-      polStackEl.appendChild(card);
-    });
+// POLAROID
+var POL_SLIDES = [
+  { emotion:'',    url:'angry.jpeg', sub:'Pure sunshine \u2600\ufe0f',         love:'Your happiness is contagious. One smile from you and my whole day resets.' },
+  { emotion:'Laughing \ud83d\ude02', url:'YOUR_PHOTO_URL_HERE', sub:"Can't stop, won't stop \ud83e\udd23", love:'The way you laugh \u2014 head back, completely unguarded \u2014 is my favourite sound in the world.' },
+  { emotion:'Sleepy \ud83d\ude34',   url:'YOUR_PHOTO_URL_HERE', sub:'5 more minutes... \ud83d\udecc',     love:'Sleepy you is dangerously cute. I could watch you pretend you\'re not tired forever.' },
+  { emotion:'Angry \ud83d\ude24',    url:'YOUR_PHOTO_URL_HERE', sub:'Uh oh \ud83d\ude21',                 love:'Even when you\'re angry, you\'re beautiful. Also slightly terrifying. But mostly beautiful.' },
+  { emotion:'Shy \ud83d\ude33',      url:'YOUR_PHOTO_URL_HERE', sub:"Don't look at me \ud83d\ude48",      love:'That little shy smile when I compliment you? I live for that moment every single time.' },
+  { emotion:'Focused \ud83e\uddd0',  url:'YOUR_PHOTO_URL_HERE', sub:'Gold medalist mode \ud83e\udd47',    love:"Watching you work is something else. You don't try to be impressive \u2014 you just are." },
+  { emotion:'Emotional \ud83c\udf0a',url:'YOUR_PHOTO_URL_HERE', sub:'Feels too deeply \ud83d\udc99',      love:'You feel everything so fully. That soft heart of yours is one of the best things about you.' },
+  { emotion:'Excited \ud83e\udd29',  url:'YOUR_PHOTO_URL_HERE', sub:'She\'s going off \u2728',            love:"Excited you is the best you. Your whole face lights up. I'd do anything to keep seeing that." },
+  { emotion:'Serious \ud83d\ude10',  url:'YOUR_PHOTO_URL_HERE', sub:"Don't mess with her \ud83d\udd25",   love:'That serious look means business. It\'s also the exact moment I fall a little more.' },
+  { emotion:'Just her \ud83c\udf39', url:'YOUR_PHOTO_URL_HERE', sub:'My favourite person \u2764\ufe0f',   love:'No filter, no performance \u2014 just you. This is the version I love most of all.' }
+];
+
+var polIdx = 0;
+var polBusy = false;
+var polInited = false;
+
+function polBuildDots() {
+  var el = document.getElementById('polDotsEl');
+  el.innerHTML = '';
+  for (var i = 0; i < POL_SLIDES.length; i++) {
+    var d = document.createElement('div');
+    d.className = 'pol-dot' + (i === polIdx ? ' pol-dot-on' : '');
+    el.appendChild(d);
   }
+}
 
-  function polUpdateCaption() {
-    document.getElementById('polEmotion').textContent = polSlides[polCurrent].emotion.toUpperCase();
-    const lv = document.getElementById('polLove');
-    lv.style.opacity = 0;
-    setTimeout(() => { lv.textContent = polSlides[polCurrent].love; lv.style.opacity = 1; }, 200);
-    document.getElementById('polCounter').textContent = (polCurrent + 1) + ' / ' + polSlides.length;
+function polBuildStack() {
+  var el = document.getElementById('polStackEl');
+  el.innerHTML = '';
+  var behindClasses = ['pol-b1','pol-b2','pol-b3'];
+  for (var offset = Math.min(3, POL_SLIDES.length - 1); offset >= 0; offset--) {
+    var idx = (polIdx + offset) % POL_SLIDES.length;
+    var sl = POL_SLIDES[idx];
+    var card = document.createElement('div');
+    var cls = offset === 0 ? 'pol-active' : behindClasses[offset - 1];
+    card.className = 'pol-card ' + cls;
+    var photoHtml = sl.url !== 'YOUR_PHOTO_URL_HERE'
+      ? '<img src="' + sl.url + '" alt="photo">'
+      : '<div class="pol-ph"><div class="pol-ph-icon">&#128247;</div><div class="pol-ph-txt">Add ' + sl.emotion + ' photo</div></div>';
+    card.innerHTML = '<div class="pol-photo">' + photoHtml + '<div class="pol-etag">' + sl.emotion + '</div></div><div class="pol-sub">' + sl.sub + '</div>';
+    el.appendChild(card);
   }
+}
 
-  function polNavigate(dir) {
-    if (polAnimating) return;
-    polAnimating = true;
-    const active = polStackEl.querySelector('.pol-active');
-    if (active) {
-      active.classList.add(dir === 1 ? 'pol-fly-left' : 'pol-fly-right');
-      setTimeout(() => {
-        polCurrent = (polCurrent + dir + polSlides.length) % polSlides.length;
-        polBuildStack(); polBuildDots(); polUpdateCaption();
-        polAnimating = false;
-      }, 380);
-    } else {
-      polCurrent = (polCurrent + dir + polSlides.length) % polSlides.length;
+function polUpdateCaption() {
+  var sl = POL_SLIDES[polIdx];
+  document.getElementById('polEmoEl').textContent = sl.emotion.toUpperCase();
+  var lv = document.getElementById('polLoveEl');
+  lv.style.opacity = '0';
+  setTimeout(function() { lv.textContent = sl.love; lv.style.opacity = '1'; }, 200);
+  document.getElementById('polCountEl').textContent = (polIdx + 1) + ' / ' + POL_SLIDES.length;
+}
+
+function polNav(dir) {
+  if (polBusy) return;
+  polBusy = true;
+  var active = document.getElementById('polStackEl').querySelector('.pol-active');
+  if (active) {
+    active.classList.add(dir === 1 ? 'pol-fly-l' : 'pol-fly-r');
+    setTimeout(function() {
+      polIdx = (polIdx + dir + POL_SLIDES.length) % POL_SLIDES.length;
       polBuildStack(); polBuildDots(); polUpdateCaption();
-      polAnimating = false;
-    }
+      polBusy = false;
+    }, 380);
+  } else {
+    polIdx = (polIdx + dir + POL_SLIDES.length) % POL_SLIDES.length;
+    polBuildStack(); polBuildDots(); polUpdateCaption();
+    polBusy = false;
   }
+}
 
-  polStackEl.addEventListener('click', () => polNavigate(1));
-
-  let polTouchX = 0;
-  polStackEl.addEventListener('touchstart', e => { polTouchX = e.touches[0].clientX; }, { passive: true });
-  polStackEl.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - polTouchX;
-    if (Math.abs(dx) > 35) polNavigate(dx < 0 ? 1 : -1);
+function initPolaroid() {
+  if (polInited) return;
+  polInited = true;
+  polBuildStack(); polBuildDots(); polUpdateCaption();
+  var stackEl = document.getElementById('polStackEl');
+  stackEl.addEventListener('click', function() { polNav(1); });
+  var tx = 0;
+  stackEl.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  stackEl.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 35) polNav(dx < 0 ? 1 : -1);
   });
-
-  function initPolaroid() {
-    if (polStackEl.children.length === 0) {
-      polBuildStack(); polBuildDots(); polUpdateCaption();
-    }
-  }
+}
 </script>
-
 </body>
 </html>
