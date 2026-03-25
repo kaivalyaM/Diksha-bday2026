@@ -635,6 +635,7 @@
     el.classList.toggle('open');
     if (!isOpen) {
       setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+      if (id === 'd2') setTimeout(initPolaroid, 80);
     }
   }
 
@@ -657,20 +658,20 @@
   });
   // ── POLAROID SLIDESHOW (Day 2) ──
   const polSlides = [
-    { emotion:'Happy',    url:'YOUR_PHOTO_URL_HERE', sub:'Pure sunshine',          love:"Your happiness is contagious. One smile from you and my whole day resets." },
-    { emotion:'Laughing', url:'YOUR_PHOTO_URL_HERE', sub:'Can\'t stop won\'t stop', love:"The way you laugh — head back, completely unguarded — is my favourite sound in the world." },
-    { emotion:'Sleepy',   url:'YOUR_PHOTO_URL_HERE', sub:'5 more minutes…',         love:"Sleepy you is dangerously cute. I could watch you pretend you're not tired forever." },
-    { emotion:'Angry',    url:'YOUR_PHOTO_URL_HERE', sub:'Uh oh 😤',               love:"Even when you're angry, you're beautiful. Also slightly terrifying. But mostly beautiful." },
-    { emotion:'Shy',      url:'YOUR_PHOTO_URL_HERE', sub:'Don\'t look at me',       love:"That little shy smile when I compliment you? I live for that moment every single time." },
-    { emotion:'Focused',  url:'YOUR_PHOTO_URL_HERE', sub:'Gold medalist mode 🥇',   love:"Watching you work is something else. You don't try to be impressive — you just are." },
-    { emotion:'Emotional',url:'YOUR_PHOTO_URL_HERE', sub:'Feels too deeply 🌊',     love:"You feel everything so fully. That soft heart of yours is one of the best things about you." },
-    { emotion:'Excited',  url:'YOUR_PHOTO_URL_HERE', sub:'She\'s going off ✨',     love:"Excited you is the best you. Your whole face lights up. I'd do anything to keep seeing that." },
-    { emotion:'Serious',  url:'YOUR_PHOTO_URL_HERE', sub:'Don\'t mess with her',    love:"That serious look means business. It's also the exact moment I fall a little more." },
-    { emotion:'Just her', url:'YOUR_PHOTO_URL_HERE', sub:'My favourite person 🌹',  love:"No filter, no performance — just you. This is the version I love most of all." }
+    { emotion:'Happy',    url:'YOUR_PHOTO_URL_HERE', sub:'Pure sunshine',           love:"Your happiness is contagious. One smile from you and my whole day resets." },
+    { emotion:'Laughing', url:'YOUR_PHOTO_URL_HERE', sub:"Can't stop won't stop",   love:"The way you laugh — head back, completely unguarded — is my favourite sound in the world." },
+    { emotion:'Sleepy',   url:'YOUR_PHOTO_URL_HERE', sub:'5 more minutes…',          love:"Sleepy you is dangerously cute. I could watch you pretend you're not tired forever." },
+    { emotion:'Angry',    url:'YOUR_PHOTO_URL_HERE', sub:'Uh oh 😤',                love:"Even when you're angry, you're beautiful. Also slightly terrifying. But mostly beautiful." },
+    { emotion:'Shy',      url:'YOUR_PHOTO_URL_HERE', sub:"Don't look at me",         love:"That little shy smile when I compliment you? I live for that moment every single time." },
+    { emotion:'Focused',  url:'YOUR_PHOTO_URL_HERE', sub:'Gold medalist mode 🥇',    love:"Watching you work is something else. You don't try to be impressive — you just are." },
+    { emotion:'Emotional',url:'YOUR_PHOTO_URL_HERE', sub:'Feels too deeply 🌊',      love:"You feel everything so fully. That soft heart of yours is one of the best things about you." },
+    { emotion:'Excited',  url:'YOUR_PHOTO_URL_HERE', sub:"She's going off ✨",       love:"Excited you is the best you. Your whole face lights up. I'd do anything to keep seeing that." },
+    { emotion:'Serious',  url:'YOUR_PHOTO_URL_HERE', sub:"Don't mess with her",      love:"That serious look means business. It's also the exact moment I fall a little more." },
+    { emotion:'Just her', url:'YOUR_PHOTO_URL_HERE', sub:'My favourite person 🌹',   love:"No filter, no performance — just you. This is the version I love most of all." }
   ];
   let polCurrent = 0, polAnimating = false;
-  const polStack = document.getElementById('polStack');
-  const polDotsEl = document.getElementById('polDots');
+  const polStackEl = document.getElementById('polStack');
+  const polDotsEl  = document.getElementById('polDots');
 
   function polBuildDots() {
     polDotsEl.innerHTML = '';
@@ -682,7 +683,7 @@
   }
 
   function polBuildStack() {
-    polStack.innerHTML = '';
+    polStackEl.innerHTML = '';
     const offsets = [];
     for (let o = Math.min(3, polSlides.length - 1); o >= 0; o--) {
       offsets.push({ idx: (polCurrent + o) % polSlides.length, o });
@@ -690,17 +691,17 @@
     offsets.forEach(({ idx, o }) => {
       const sl = polSlides[idx];
       const card = document.createElement('div');
-      card.className = 'pol-card ' + (o === 0 ? 'pol-active' : `pol-behind-${o}`);
-      card.innerHTML = `
-        <div class="pol-photo">
-          ${sl.url !== 'YOUR_PHOTO_URL_HERE'
-            ? `<img src="${sl.url}" alt="${sl.emotion}">`
-            : `<div class="pol-ph"><div class="pol-ph-icon">📷</div><div class="pol-ph-txt">Add ${sl.emotion} photo</div></div>`
-          }
-          <div class="pol-etag">${sl.emotion}</div>
-        </div>
-        <div class="pol-sub">${sl.sub}</div>`;
-      polStack.appendChild(card);
+      card.className = 'pol-card ' + (o === 0 ? 'pol-active' : 'pol-behind-' + o);
+      card.innerHTML =
+        '<div class="pol-photo">' +
+          (sl.url !== 'YOUR_PHOTO_URL_HERE'
+            ? '<img src="' + sl.url + '" alt="' + sl.emotion + '">'
+            : '<div class="pol-ph"><div class="pol-ph-icon">📷</div><div class="pol-ph-txt">Add ' + sl.emotion + ' photo</div></div>'
+          ) +
+          '<div class="pol-etag">' + sl.emotion + '</div>' +
+        '</div>' +
+        '<div class="pol-sub">' + sl.sub + '</div>';
+      polStackEl.appendChild(card);
     });
   }
 
@@ -709,13 +710,13 @@
     const lv = document.getElementById('polLove');
     lv.style.opacity = 0;
     setTimeout(() => { lv.textContent = polSlides[polCurrent].love; lv.style.opacity = 1; }, 200);
-    document.getElementById('polCounter').textContent = `${polCurrent + 1} / ${polSlides.length}`;
+    document.getElementById('polCounter').textContent = (polCurrent + 1) + ' / ' + polSlides.length;
   }
 
   function polNavigate(dir) {
     if (polAnimating) return;
     polAnimating = true;
-    const active = polStack.querySelector('.pol-active');
+    const active = polStackEl.querySelector('.pol-active');
     if (active) {
       active.classList.add(dir === 1 ? 'pol-fly-left' : 'pol-fly-right');
       setTimeout(() => {
@@ -730,29 +731,19 @@
     }
   }
 
-  // tap card to go next
-  polStack.addEventListener('click', () => polNavigate(1));
+  polStackEl.addEventListener('click', () => polNavigate(1));
 
-  // swipe support
   let polTouchX = 0;
-  polStack.addEventListener('touchstart', e => { polTouchX = e.touches[0].clientX; }, { passive: true });
-  polStack.addEventListener('touchend', e => {
+  polStackEl.addEventListener('touchstart', e => { polTouchX = e.touches[0].clientX; }, { passive: true });
+  polStackEl.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - polTouchX;
     if (Math.abs(dx) > 35) polNavigate(dx < 0 ? 1 : -1);
   });
 
-  // init polaroid (runs once; re-inits safely if day2 toggled)
   function initPolaroid() {
-    if (polStack.children.length === 0) {
+    if (polStackEl.children.length === 0) {
       polBuildStack(); polBuildDots(); polUpdateCaption();
     }
-  }
-
-  // hook into toggleDay so polaroid inits when Day 2 opens
-  const _origToggle = toggleDay;
-  function toggleDay(id) {
-    _origToggle(id);
-    if (id === 'd2') setTimeout(initPolaroid, 50);
   }
 </script>
 
