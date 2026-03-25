@@ -285,18 +285,90 @@ window.addEventListener('load', function() {
 
 // POLAROID
 var POL_SLIDES = [
-  { emotion:'',    url:'angry.jpeg', sub:'Pure sunshine \u2600\ufe0f',         love:'Your happiness is contagious. One smile from you and my whole day resets.' },
-  { emotion:'Laughing \ud83d\ude02', url:'YOUR_PHOTO_URL_HERE', sub:"Can't stop, won't stop \ud83e\udd23", love:'The way you laugh \u2014 head back, completely unguarded \u2014 is my favourite sound in the world.' },
-  { emotion:'Sleepy \ud83d\ude34',   url:'YOUR_PHOTO_URL_HERE', sub:'5 more minutes... \ud83d\udecc',     love:'Sleepy you is dangerously cute. I could watch you pretend you\'re not tired forever.' },
-  { emotion:'Angry \ud83d\ude24',    url:'YOUR_PHOTO_URL_HERE', sub:'Uh oh \ud83d\ude21',                 love:'Even when you\'re angry, you\'re beautiful. Also slightly terrifying. But mostly beautiful.' },
-  { emotion:'Shy \ud83d\ude33',      url:'YOUR_PHOTO_URL_HERE', sub:"Don't look at me \ud83d\ude48",      love:'That little shy smile when I compliment you? I live for that moment every single time.' },
-  { emotion:'Focused \ud83e\uddd0',  url:'YOUR_PHOTO_URL_HERE', sub:'Gold medalist mode \ud83e\udd47',    love:"Watching you work is something else. You don't try to be impressive \u2014 you just are." },
-  { emotion:'Emotional \ud83c\udf0a',url:'YOUR_PHOTO_URL_HERE', sub:'Feels too deeply \ud83d\udc99',      love:'You feel everything so fully. That soft heart of yours is one of the best things about you.' },
-  { emotion:'Excited \ud83e\udd29',  url:'YOUR_PHOTO_URL_HERE', sub:'She\'s going off \u2728',            love:"Excited you is the best you. Your whole face lights up. I'd do anything to keep seeing that." },
-  { emotion:'Serious \ud83d\ude10',  url:'YOUR_PHOTO_URL_HERE', sub:"Don't mess with her \ud83d\udd25",   love:'That serious look means business. It\'s also the exact moment I fall a little more.' },
-  { emotion:'Just her \ud83c\udf39', url:'YOUR_PHOTO_URL_HERE', sub:'My favourite person \u2764\ufe0f',   love:'No filter, no performance \u2014 just you. This is the version I love most of all.' }
-];
+  { emotion:'Happy ☀️',    
+    url:'https://drive.google.com/uc?export=download&id=1pcAzuaP2v5CJQO59_EF8sBIxQ-p7IyUu', 
+    sub:'Pure sunshine ☀️',         
+    love:'Tu hasta na… literally sagla world thoda better vatta. Tujha smile is not just cute… it feels like home ❤️' 
+  },
 
+  { emotion:'Funny wired pose 😂', 
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:"Can't stop, won't stop 🤣", 
+    love:'Tu asa weird pose detes na… ajun jast cute diste. Matlab logic nahiye but tujhya sobat sagla funny pan perfect vatta 😭❤️' 
+  },
+
+  { emotion:'Sleepy 😴',   
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'5 more minutes... 🛌',     
+    love:'Sleepy tu = cutest version ever. Aadha aankh band, aadha attitude… pan full loveable 🥺❤️' 
+  },
+
+  { emotion:'Angry 😤',    
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Uh oh 😠',                 
+    love:'Tu ragarte na… thoda dar lagta hai 😭 but sach bolu? Tya moment madhe pan tu khup cute diste… bas thoda control kar bal 😌❤️' 
+  },
+
+  { emotion:'Crying / emotional 🥺',  
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:"Don't cry 😭",      
+    love:'Tu radata na… mala kharach vait vatta. Tu strong aahes pan tula sagla feel hota… and that’s what makes you so real ❤️' 
+  },
+
+  { emotion:'Gold medalist mode 🧬',  
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Focused 🔬',    
+    love:'Tu kaam kartana baghitla ki ekach thought yeto… “damn, hi mulgi kharach solid ahe”. Tu effortless impressive aahes ❤️' 
+  },
+
+  { emotion:'Foodie but little appetite 🍟',  
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Khate kam, bolte zyada 😭',      
+    love:'Tu mhantos bhook lagli… pan khates thoda sa 😭 still tujha food sobat drama pan mala khup avadto ❤️' 
+  },
+
+  { emotion:'Excited 🤩',  
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'She’s going off ✨',            
+    love:'Excited tu baghitla ki mala ajun excited vatta. Tujha energy full contagious ahe… literally happiness spread kartes tu ❤️' 
+  },
+
+  { emotion:'Dominating 😏',  
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:"Boss girl 🔥",   
+    love:'Kabhi kabhi tu full dominating mode madhe yetes… ani honestly mala te pan avadta. Thoda attitude, thoda swag 😌❤️' 
+  },
+
+  { emotion:'Innocent 🥺', 
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Too pure 🤍', 
+    love:'Tujha ha innocent side na… saglyat precious ahe. It’s rare, it’s pure… ani te mi protect karnaar always ❤️' 
+  },
+
+  { emotion:'Not talking to me 😒', 
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Silent treatment 😭', 
+    love:'Tu bolat nahi na mala… te worst punishment asta 😭 pan tya madhe pan mala kalta ki tu kitki important aahes ❤️' 
+  },
+
+  { emotion:'Trying beer first time 😂', 
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Overacting queen 🍺', 
+    love:'Pehli baar beer try kartana tu je expression dilas na 😭 full overacting… pan honestly that moment = core memory ❤️' 
+  },
+
+  { emotion:'Flowers wali cutie 🌸', 
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Soft girl 🌷', 
+    love:'Flowers sobat tu diste na… literally aesthetic nahi, full magic vatta. Tu kharach khup sundar aahes ❤️' 
+  },
+
+  { emotion:'“Aj mai isko sabak sikha kar rahungi” 😤', 
+    url:'YOUR_PHOTO_URL_HERE', 
+    sub:'Danger mode ⚠️', 
+    love:'Jevha tu asa boltes na… mala hasu pan yeto ani thoda dar pan 😭 pan ek gosht fix — tujhya mood madhe pan tujhya var love kami hot nahi ❤️' 
+  }
+];
 var polIdx = 0;
 var polBusy = false;
 var polInited = false;
